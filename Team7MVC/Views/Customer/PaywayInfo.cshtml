@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "PaywayInfo";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10 card" style="margin:auto auto">
+                <div class="card-header">
+                   <h3> My Credit Card </h3>
+                    @Html.ActionLink("新增信用卡", "Create", "", new { @class = "btn btn-secondary" })
+                </div>
+                <div class="card-body">
+                    <div>
+                        <table class="table table-hover">
+                            <thead class="">
+                                <tr>
+
+                                    <th></th>
+                                    <a href="~/Views/Customer/PaywayInfo.cshtml">~/Views/Customer/PaywayInfo.cshtml</a>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*@foreach (var item in Model)
+        {*@
+                                <tr>
+                                    <td class="text-center"><h4>目前尚無信用卡資訊</h4></td>
+                                </tr>
+                               
+                                @*}*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section JQuery
+{
+    <script>
+        $(function () {
+            $("header nav")
+                .removeClass("navbar-dark")
+                .addClass("navbar-light");
+            //$("header a img").prop("src", "/Assets/images/img_Index/logo_dark.png");
+            $("header .nav-item > a")
+                .removeClass("text-white")
+                .addClass("text-dark");
+            $("#search-input")
+                .removeClass("whiteplaceholder")
+                .removeClass("text-white")
+                .addClass("blackplaceholder")
+                .addClass("text-dark");
+            $("header").addClass("fixed-header");
+
+            $("#logo").css("color", "#000");
+            //$(".account").hide();
+            //$("#my-account").mouseenter(
+            //    function () {
+            //        //toggle 像電燈般開闔物件
+            //        $(this).find(".account").toggle();
+            //    }
+            //);
+            $(document).ready(function () {
+
+                $("li").each(function () {
+
+                    if ($(this).hasClass("user-active")) {
+                        $(this).removeClass("user-active");
+                    }
+
+                });
+
+                $("#sidebar_Payway_Info").addClass("user-active");
+
+                $("li").on("click", function () {
+                    $("#sidebar_Payway_Info").removeClass("user-active");
+                    $(this).addClass("user-active");
+                });
+            });
+
+        });
+    </script>
+}
+
+

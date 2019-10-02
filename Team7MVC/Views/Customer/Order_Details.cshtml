@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Team7MVC.ViewModels.ShopListsViewModel>
+
+@{
+    ViewBag.Title = "Order_Details";
+    int count = 1;
+}
+
+<link href="~/Assets/css/User/Order_Details.css" rel="stylesheet" />
+
+<div class="Detail">
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-10 card" style="margin:auto auto">
+                    @*<div class="card-header">
+                        </div>*@
+                    <div class="card-body">
+                        <div>
+                            <table class="table table-hover">
+                                <thead class="">
+                                    <tr>
+                                        <th class="Detail-table-title">序</th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ProductName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Year)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Origin)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Price)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Quantity)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TotalCost)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        @*@Html.Partial("ShoppingCartPartial")*@
+                                        <tr>
+                                            <!-- <td colspan="8" class="Detail-table-row">您的清單內目前沒有任何商品</td> -->
+                                            <td class="Detail-table-title">@count</td>
+                                            @{ count++;}
+
+                                            <td class="product-name">
+                                                <div>
+                                                    <a href="@Url.Action("ProductDetail","Product" , new { id = item.ProductId })">
+                                                        <img src="~/Assets/images/img_Products/@Html.DisplayFor(modelItem => item.Picture)" alt="商品" />
+                                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                                    </a>
+                                                </div>
+                                                
+                                            </td>
+                                            <td class="Detail-table-title">@Html.DisplayFor(modelItem => item.Year)</td>
+                                            <td class="Detail-table-title">@Html.DisplayFor(modelItem => item.Origin)</td>
+                                            <td class="Detail-table-title">@Html.DisplayFor(modelItem => item.Price)</td>
+                                            <td class="Detail-table-title">@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                            <td class="Detail-table-title">@Html.DisplayFor(modelItem => item.TotalCost)</td>
+                                            
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section JQuery
+{
+    <script>
+        $(function () {
+            $("header nav")
+                .removeClass("navbar-dark")
+                .addClass("navbar-light");
+            //$("header a img").prop("src", "/Assets/images/img_Index/logo_dark.png");
+            $("header .nav-item > a")
+                .removeClass("text-white")
+                .addClass("text-dark");
+            $("#search-input")
+                .removeClass("whiteplaceholder")
+                .removeClass("text-white")
+                .addClass("blackplaceholder")
+                .addClass("text-dark");
+            $("header").addClass("fixed-header");
+
+            $("#logo").css("color", "#000");
+
+            $(document).ready(function () {
+
+                $("li").each(function () {
+
+                    if ($(this).hasClass("user-active")) {
+                        $(this).removeClass("user-active");
+                    }
+
+                });
+
+                $("#sidebar_Purchase_List").addClass("user-active");
+
+                $("li").on("click", function () {
+                    $("#sidebar_Purchase_List").removeClass("user-active");
+                    $(this).addClass("user-active");
+                });
+            });
+
+        });
+    </script>
+}

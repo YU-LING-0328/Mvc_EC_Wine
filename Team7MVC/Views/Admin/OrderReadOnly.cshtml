@@ -1,0 +1,257 @@
+﻿@model Orders
+
+@{
+    ViewBag.Title = "Order Detail";
+}
+
+<div class="content">
+    @using (Html.BeginForm("OrderReadOnly", "Admin", new { Id = Model.OrderID }))
+    {
+        <div class="form-horizontal">
+            @*<div class="row">
+                    <div class="back ml-auto">
+                        <button type="submit" class="btn btn-block btn-round"><i class="fas fa-arrow-left mr-3"></i>BACK</button>
+                    </div>
+                </div>*@
+            <div class="row">
+                <div class="col-9" style="margin:auto auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="h5 form-group">訂單詳細資訊</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3 pr-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OrderID, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.OrderID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CustomerID, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                @Html.DisplayNameFor(model => model.Id)
+            </label>
+             <input class="form-control" type="number" value="@Model.Id" />
+
+            <label class="form-group">
+                @Html.DisplayNameFor(model => model.Name)
+            </label>
+            <input class="form-control" type="text" value="@Model.Name" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 pr-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OrderDate, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.OrderDate, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.RequiredDate, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.RequiredDate, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.RequiredDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                @Html.DisplayNameFor(model => model.Email)
+            </label>
+            <input class="form-control" type="email" value="@Model.Email" />
+
+            <label class="form-group">
+                @Html.DisplayNameFor(model => model.Phone)
+            </label>
+            <input class="form-control" type="text" value="@Model.Phone" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShippedDate, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.ShippedDate, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.ShippedDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                @Html.DisplayNameFor(model => model.Datetime)
+            </label>
+            <input class="form-control" type="text" value="@Model.Datetime" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShipperID, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.ShipperID, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.ShipperID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                @Html.DisplayNameFor(model => model.QuestionCategory)
+            </label>
+            <input class="form-control" type="text" value="@Model.QuestionCategory" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Freight, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Freight, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Freight, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PayWay, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.PayWay, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.PayWay, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PayDate, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.PayDate, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.PayDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShipCity, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.ShipCity, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.ShipCity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.BillAddress, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.BillAddress, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.BillAddress, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.BillName, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.BillName, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.BillName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.BillCity, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.BillCity, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.BillCity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.BillPhone, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.BillPhone, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.BillPhone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="update ml-auto mr-auto">
+                                    @*<button type="submit" class="btn btn-primary btn-round">修改資料</button>*@
+                                    @Html.ActionLink("修改訂單", "OrderEdit", new { Id = Model.OrderID}, new { @class = "btn btn-primary btn-round" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section JQ {
+    <script>
+        $(document).ready(function () {
+
+            $("li").each(function () {
+
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                }
+
+            });
+
+            $("#orders").addClass("active");
+
+            $("li").on("click", function () {
+                $("#orders").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
+}

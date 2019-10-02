@@ -1,0 +1,52 @@
+
+
+/*.Detail table {
+    width: 100%;
+}*/
+.row {
+    margin:60px 0 700px;
+}
+
+.Detail th {
+    text-align: center;
+}
+
+.Detail table td {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e2e2;
+    line-height: 2em;
+    font-size: 16px;
+}
+
+.Detail .product-name {
+    text-align: left;
+}
+
+.product-name img {
+    margin: 0 5px;
+    width: 50px;
+}
+
+a {
+    display: block;
+}
+
+    a:hover {
+        background-color: transparent;
+    }
+
+.product-name a {
+    list-style: none;
+    text-decoration: none;
+    color: rgb(94, 94, 94);
+}
+
+.Detail .Detail-price td:nth-of-type(3n+1) {
+    text-align: right;
+}
+
+
+
+
+

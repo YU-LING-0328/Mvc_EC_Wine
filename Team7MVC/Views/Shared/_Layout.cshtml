@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="~/Assets/images/img_base/title_icon.png">
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    @RenderSection("CSS", required: false)
+    <link href="~/Assets/css/IndexStyles.css" rel="stylesheet" />
+    <!-- WhatsHelp.io widget -->
+    <script type="text/javascript">
+        (function () {
+            var options = {
+                line: "//line.me/R/ti/p/%40570niklu", // Line QR code URL
+                call_to_action: "Line Bot", // Call to action
+                position: "right", // Position may be 'right' or 'left'
+            };
+            var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        })();
+    </script>
+    <!-- /WhatsHelp.io widget -->
+</head>
+<body>
+    @Html.Partial("_HeaderPartial")
+
+    @RenderBody()
+    <footer class="page-footer">
+        <div class="footer-email d-flex justify-content-center align-items-center text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-5 text-lg-right">
+                        <p class="my-3 my-lg-0 text-white m-0">訂閱 THE MACALLAN 的最新消息</p>
+                    </div>
+                    <div class="col-12 col-lg-7 text-lg-left">
+                        <div class="sub-email input-group mx-auto ml-lg-4">
+                            <input type="text" class="form-control text-white border-0 rounded-0 whiteplaceholder"
+                                   placeholder="輸入您的電子郵件地址" aria-label="input your email" aria-describedby="sub">
+                            <div class="input-group-append">
+                                <button type="button" class="border-0 text-white font-weight-bold rounded-0" id="sub">訂閱</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-menu container-fluid my-5">
+            <div class="row justify-content-around m-0 p-0">
+                <div class="d-none d-lg-block">
+                    <img src="~/Assets/images/img_Index/estate_logo.png" alt="">
+                </div>
+                <div class="col-12 col-md-auto">
+                    <ul class="list-unstyled">
+                        <li class="border-bottom border-dark mb-3" style="padding-bottom: 1.25rem;">
+                            <a href="~/Wine/Index">
+                                ABOUT
+                                US
+                            </a>
+                        </li>
+                        <li class="mb-3"><a href="~/Wine/Inside_the_macallane">INSIDE THE MACALLAN</a></li>
+                        <li class="mb-3"><a href="~/Wine/Contact">CONTACT US</a></li>
+                        <li class="mb-3"><a href="~/Wine/Contact">NEWSLETTER</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-auto">
+                    <ul class="list-unstyled">
+                        <li class="border-bottom border-dark mb-3" style="padding-bottom: 1.25rem;">
+                            <a href="~/Product/Index">
+                                OUR
+                                WINE
+                            </a>
+                        </li>
+                        <li class="mb-3"><a href="@Url.Action("GetRedWine", "Product")">RED WINE</a></li>
+                        <li class="mb-3"><a href="@Url.Action("GetWhiteSpirit", "Product")">WHITE SPIRIT</a></li>
+                        <li class="mb-3"><a href="@Url.Action("GetMulledWine", "Product")">MULLED WINE / NOBLE ROT</a></li>
+                        <li class="mb-3"><a href="@Url.Action("GetChampagne", "Product")">SPARKLING WINE / MICRO BUBBLES / CHAMPAGNE</a></li>
+                        <li class="mb-3"><a href="@Url.Action("GetPinkWine", "Product")">PINK WINE</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <img src="~/Assets/images/img_base/QR_Code.png" style="width:126px; height:126px" />
+                </div>
+            </div>
+        </div>
+        <div class="footer-share border-bottom border-dark">
+            <div class="d-flex justify-content-around mx-auto mt-3 pb-4">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-link d-flex justify-content-center mt-4">
+            <a class="px-2 border-right" href="#">Drink Responsibly</a>
+            <a class="px-2 border-right" href="#">The Edrington Group</a>
+            <a class="px-2 border-right" href="#">Privacy Policy</a>
+            <a class="px-2" href="#">Terms of Use</a>
+        </div>
+        <p class="text-secondary text-center my-3">&copy; 2019 The JIU GUI</p>
+        <img class="footer-img" src="~/Assets/images/img_Index/warning.svg" alt="">
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    @RenderSection("JQuery", required: false)
+</body>
+</html>

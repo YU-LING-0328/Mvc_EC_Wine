@@ -1,0 +1,157 @@
+﻿@model Team7MVC.ViewModels.AdminCustomersViewModel
+@{
+    ViewBag.Title = "Customer Detail";
+}
+
+<div class="content">
+    @using (Html.BeginForm("CustomerReadOnly", "Admin", new { Id = Model.CustomerID }))
+    {
+        <div class="form-horizontal">
+            @*<div class="row">
+                    <div class="back ml-auto">
+                        <button type="submit" class="btn btn-block btn-round"><i class="fas fa-arrow-left mr-3"></i>BACK</button>
+                    </div>
+                </div>*@
+            <div class="row">
+                <div class="col-9" style="margin:auto auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="h5 form-group">顧客詳細資訊</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3 pr-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CustomerID, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                                        @Html.DisplayNameFor(model => model.Id)
+                                    </label>
+                                     <input class="form-control" type="number" value="@Model.Id" />
+
+                                    <label class="form-group">
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </label>
+                                    <input class="form-control" type="text" value="@Model.Name" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 pr-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </label>
+                                    <input class="form-control" type="email" value="@Model.Email" />
+
+                                    <label class="form-group">
+                                        @Html.DisplayNameFor(model => model.Phone)
+                                    </label>
+                                    <input class="form-control" type="text" value="@Model.Phone" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                                        @Html.DisplayNameFor(model => model.Datetime)
+                                    </label>
+                                    <input class="form-control" type="text" value="@Model.Datetime" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                                        @Html.DisplayNameFor(model => model.QuestionCategory)
+                                    </label>
+                                    <input class="form-control" type="text" value="@Model.QuestionCategory" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TotalCost, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.TotalCost, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.TotalCost, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                                                        
+                            <div class="row">
+                                <div class="update ml-auto mr-auto">
+                                    @*<button type="submit" class="btn btn-primary btn-round">修改資料</button>*@
+                                    @Html.ActionLink("修改顧客資料", "CustomerEdit", new { Id = Model.CustomerID }, new { @class = "btn btn-primary btn-round" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section JQ {
+    <script>
+        $(document).ready(function () {
+
+            $("li").each(function () {
+
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                }
+
+            });
+
+            $("#customers").addClass("active");
+
+            $("li").on("click", function () {
+                $("#customrs").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
+}

@@ -1,0 +1,165 @@
+﻿@model Messages
+
+@{
+    ViewBag.Title = "ReplyMessage";
+}
+
+<div class="content">
+    @using (Html.BeginForm("ReplyMessage", "Admin", new { Id = Model.Id }))
+    {
+        <div class="form-horizontal">
+            @*<div class="row">
+                <div class="back ml-auto">
+                    <button type="submit" class="btn btn-block btn-round"><i class="fas fa-arrow-left mr-3"></i>BACK</button>
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="h5 form-group">訊息內容</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3 pr-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                    @Html.DisplayNameFor(model => model.Id)
+                </label>
+                 <input class="form-control" type="number" value="@Model.Id" />
+
+                <label class="form-group">
+                    @Html.DisplayNameFor(model => model.Name)
+                </label>
+                <input class="form-control" type="text" value="@Model.Name" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 pr-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                    @Html.DisplayNameFor(model => model.Email)
+                </label>
+                <input class="form-control" type="email" value="@Model.Email" />
+
+                <label class="form-group">
+                    @Html.DisplayNameFor(model => model.Phone)
+                </label>
+                <input class="form-control" type="text" value="@Model.Phone" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Datetime, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Datetime, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.Datetime, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                    @Html.DisplayNameFor(model => model.Datetime)
+                </label>
+                <input class="form-control" type="text" value="@Model.Datetime" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.QuestionCategory, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.QuestionCategory, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                                        @Html.ValidationMessageFor(model => model.QuestionCategory, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                    @Html.DisplayNameFor(model => model.QuestionCategory)
+                </label>
+                <input class="form-control" type="text" value="@Model.QuestionCategory" />*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group d-flex flex-column">
+                                        @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", @readonly = true, @rows = 10 })
+                                        @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @*<label class="form-group">
+                    @Html.DisplayNameFor(model => model.Comments)
+                </label>
+                <input class="form-control" type="text" value="@Model.Comments" />*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="h5 form-group">回覆區</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="請輸入回覆內容..." rows="10" name="replyContent"></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="d-flex mx-auto">
+                                    @*@Html.ActionLink("<i class='fas fa - comment - dots mr - 3'></i>回覆", "SendMessage", new { content =  }, new { @class = "btn btn-primary btn-round mr-1" })*@
+                                    @*<a id="reply-btn" class="btn btn-primary btn-round mr-1"><i class="fas fa-comment-dots mr-3"></i>回覆</a>*@
+                                    <button type="submit" class="btn btn-primary btn-round mr-1"><i class="fas fa-comment-dots mr-3"></i>回覆</button>
+                                    <a href="@Url.Action("Messages","Admin")" class="btn btn-block btn-round ml-1"><i class="fas fa-arrow-left mr-3"></i>返回</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section JQ {
+    <script>
+        $(document).ready(function () {
+
+            $("li").each(function () {
+
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                }
+
+            });
+
+            $("#messages").addClass("active");
+
+            $("li").on("click", function () {
+                $("#messages").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
+}

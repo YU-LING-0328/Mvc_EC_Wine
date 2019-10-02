@@ -1,0 +1,68 @@
+﻿@*@model Team7MVC.Models.Customers*@
+
+@*<div class="sidebar" data-color="gray" data-active-color="danger" style="top: 4.5rem;">*@
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="~/Assets/images/img_base/sidebar.jpg" style="top: 4.5rem;">
+    <div class="logo">
+        @*<a href="~/Customer/CustomerEdit" class="simple-text logo-mini">
+            <div class="logo-image-small">
+                    <img src="~/Assets/img_user/@Html.DisplayFor(model => model.Picture)" alt="@Html.DisplayFor(model => model.CustomerID)">
+                </div>
+        </a>*@
+        <a href="#" class="simple-text logo-normal">
+            @Html.ActionLink(User.Identity.Name, "CustomerEdit", "Customer", new { id = User.Identity.Name }, new { @class = "dropdown-item" })
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            @*<li id="my-account">
+            <a href="~/Customer/CustomerEdit">
+                <i class="nc-icon nc-single-02"></i>
+                <p>
+                    My Account
+                </p>
+            </a>
+        </li>*@
+            <li class="user-active account" id="sidebar_Personal_Information">
+                <a href="~/Customer/CustomerEdit">
+                    <i class="nc-icon nc-badge"></i>
+                    <p>
+                        Personal Information
+                    </p>
+                </a>
+            </li>
+            <li class="account" id="sidebar_Change_Password">
+                <a href="~/Customer/ChangePassword">
+                    <i class="nc-icon nc-key-25"></i>
+                    @*更改密碼*@
+                    <p>
+                        @*@Html.ActionLink("Change Password", "ChangePassword", new { id = User.Identity.Name })*@
+                        Change Password
+                    </p>
+                </a>
+            </li>
+            <li id="sidebar_Purchase_List">
+                <a href="~/Customer/PurchaseList">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Purchase List</p>
+                </a>
+            </li>
+            <li class="account" id="sidebar_Payway_Info">
+                <a href="~/Customer/PaywayInfo">
+                    <i class="nc-icon nc-diamond"></i>
+                    @*銀行帳號/信用卡*@
+                    <p>
+                        Payway Information
+                    </p>
+                </a>
+            </li>
+
+
+            <li class="active-pro">
+                <a href="~/Wine/Index">
+                    <i class="nc-icon nc-spaceship"></i>
+                    <p>Back to Shop</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

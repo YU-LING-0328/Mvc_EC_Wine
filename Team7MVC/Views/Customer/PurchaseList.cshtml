@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Team7MVC.Models.Orders>
+
+@{
+    ViewBag.Title = "PurchaseList";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10 card" style="margin:auto auto">
+                @*<div class="card-header">
+                    </div>*@
+                <div class="card-body">
+                    <div>
+                        <table class="table table-hover">
+                            <thead class="">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OrderID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OrderDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TotalAmount)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PayWay)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Status)
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OrderID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OrderDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalAmount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PayWay)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+
+                                        @{
+                                            if (item.Status == "未付款" || item.Status == "已付款")
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("訂單明細", "Order_Details", new { id = item.OrderID }, new { @class = "btn btn-secondary" })
+                                                    @Html.ActionLink("取消訂單", "Order_Delete", new { id = item.OrderID }, new { @class = "btn btn-light" })
+                                                </td>
+                                            }
+                                            else if (item.Status == "已出貨")
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("訂單明細", "Order_Details", new { id = item.OrderID }, new { @class = "btn btn-secondary" })
+                                                    @Html.ActionLink("商品退貨", "Order_Return", new { id = item.OrderID }, new { @class = "btn btn-light" })
+                                                </td>
+                                            }
+                                        }
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section JQuery
+{
+    <script>
+        $(function () {
+            $("header nav")
+                .removeClass("navbar-dark")
+                .addClass("navbar-light");
+            //$("header a img").prop("src", "/Assets/images/img_Index/logo_dark.png");
+            $("header .nav-item > a")
+                .removeClass("text-white")
+                .addClass("text-dark");
+            $("#search-input")
+                .removeClass("whiteplaceholder")
+                .removeClass("text-white")
+                .addClass("blackplaceholder")
+                .addClass("text-dark");
+            $("header").addClass("fixed-header");
+
+            $("#logo").css("color", "#000");
+            //$(".account").hide();
+            //$("#my-account").mouseenter(
+            //    function () {
+            //        //toggle 像電燈般開闔物件
+            //        $(this).find(".account").toggle();
+            //    }
+            //);
+            $(document).ready(function () {
+
+                $("li").each(function () {
+
+                    if ($(this).hasClass("user-active")) {
+                        $(this).removeClass("user-active");
+                    }
+
+                });
+
+                $("#sidebar_Purchase_List").addClass("user-active");
+
+                $("li").on("click", function () {
+                    $("#sidebar_Purchase_List").removeClass("user-active");
+                    $(this).addClass("user-active");
+                });
+            });
+
+        });
+    </script>
+}

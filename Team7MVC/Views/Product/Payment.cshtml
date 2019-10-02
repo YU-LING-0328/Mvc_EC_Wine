@@ -1,0 +1,397 @@
+﻿@model PaymentViewModel
+@{
+    ViewBag.Title = "Payment";
+    var productpayments = Model.shopList;
+    var customerPayment = Model.customerPayment;
+    decimal Total = 0;
+    //decimal Freight = 100;
+}
+@Html.AntiForgeryToken()
+@section CSS
+{
+    <link href="~/Assets/css/shopping-cart.css" rel="stylesheet" />
+    <link href="~/Assets/css/shopping-cart-pay.css" rel="stylesheet" />
+}
+<body id="orderbody">
+    <div class="Products-Detail">
+        <div class="container">
+            <div class="Paymentheader">
+                <div class="Detail-path">
+                    <ul class="path">
+                        <li>
+                            <a href="#">Basket</a><i class="fas fa-chevron-right"></i>
+                        </li>
+                        <li>
+                            Information<i class="fas fa-chevron-right"></i>
+                        </li>
+
+                        <li>
+                            Shipping<i class="fas fa-chevron-right"></i>
+                        </li>
+                        <li>
+                            Payment
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pay-main">
+            <div class="container">
+                <form action="/Product/Payment" method="post" style="max-width:52%; padding-right: 6%; float: left; flex-direction: column;">
+                    <div class="pay-main-left">
+                        <div class="shopping-address">
+                            <h2>Shipping address</h2>
+
+                            <div class="form-group group-half">
+                                @Html.EditorFor(model => model.customerPayment.ShipName, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput", @placeholder = "First name(optional)", @Name = "ShipFirstName" } })
+
+                            </div>
+
+                            <div class="form-group group-half">
+                                @Html.EditorFor(model => model.customerPayment.ShipName, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @placeholder = "Last name", @Name = "ShipLastName" } })
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.customerPayment.ShipAddress, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @placeholder = "Address", @Name = "ShipAddress" } })
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.customerPayment.ShipCity, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @placeholder = "City", @Name = "ShipCity" } })
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.customerPayment.ShipPhone, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @placeholder = "Phone", @Name = "ShipPhone" } })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="payment-method">
+                                <div>
+                                    <h2>Trans Type</h2>
+                                </div>
+                                <div class="select-pay-for">
+                                    <button class="btn btn-primary mr-5 ml-4 " type="button" id="collapse-false" value="ATM">
+                                        Transfer ATM
+                                    </button>
+                                    <button id="collapse-true" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" value="CreditCard">
+                                        Pay By Credit Card
+                                    </button>
+                                </div>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <div class="card-icon-group">
+                                            <span class="cardIcon-DISCOVER"></span>
+                                        </div>
+                                        <div class="card-no">
+                                            <p>Card No</p>
+
+                                            <!-- <label for="formGroupExampleInput">Phone</label> -->
+
+                                            @Html.EditorFor(model => model.customerPayment.CreditCardNo, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @Name = "CreditCardNo4" } })
+
+                                            <p class="ml-1"> -</p>
+                                            @Html.EditorFor(model => model.customerPayment.CreditCardNo, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @Name = "CreditCardNo8" } })
+
+                                            <p class="ml-1"> -</p>
+                                            @Html.EditorFor(model => model.customerPayment.CreditCardNo, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @Name = "CreditCardNo12" } })
+
+                                            <p class="ml-1"> -</p>
+                                            @Html.EditorFor(model => model.customerPayment.CreditCardNo, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @Name = "CreditCardNo16" } })
+
+                                        </div>
+                                        <div class="validity-period">
+                                            <p>Validity Period</p>
+
+                                            <!-- <label for="formGroupExampleInput">Phone</label> -->
+                                            @Html.EditorFor(model => model.customerPayment.CreditCardDate, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @placeholder = "MM", @Name = "CreditCardMM" } })
+
+
+                                            @Html.EditorFor(model => model.customerPayment.CreditCardDate, new { htmlAttributes = new { @class = "form-control ml-2", @id = "formGroupExampleInput2", @placeholder = "YY", @Name = "CreditCardYY" } })
+
+                                            <p class="ml-2 mr-2">CSC</p>
+
+                                            @Html.EditorFor(model => model.customerPayment.CreditCardCSC, new { htmlAttributes = new { @class = "form-control ml-2", @id = "formGroupExampleInput2", @placeholder = "3 digits", @Name = "CreditCardCSC" } })
+
+                                            <span class="creditcard"></span>
+                                        </div>
+                                        <div class="identity-card">
+                                            <p>Identity Card</p>
+                                            @Html.EditorFor(model => model.customerPayment.IdentityCard, new { htmlAttributes = new { @class = "form-control", @id = "formGroupExampleInput2", @Name = "IdentityCard" } })
+                                            @*<input type="text" class="form-control " id="formGroupExampleInput2">*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="section" data-billing-address="">
+
+                                <h2 class="section-title">Billing address</h2>
+
+                                <div class="section-content">
+                                    <fieldset class="content-box">
+                                        <div class="radio-wrapper content-box-row" data-same-billing-address="">
+                                            <div class="radio-input">
+                                                <input id="checkout-different-billing-address-false" type="radio" class="input-radio" value="1" checked="checked" name="Bill" aria-expanded="false">
+
+                                            </div>
+                                            <label for="checkout-different-billing-address-false" class="radio-lable content-box-emphasis">Same as shipping address</label>
+                                        </div>
+                                        <div class="radio-wrapper content-box-row">
+                                            <div class="radio-input">
+                                                <input type="radio" id="checkout-different-billing-address-true" class="input-radio " value="2" name="Bill" data-toggle="collapse" href="#collapse-address" aria-expanded="true">
+                                            </div>
+                                            <label class="radio-lable content-box-emphasis" for="checkout-different-billing-address-true">Use a different billing address</label>
+                                        </div>
+
+                                        <div class="collapse" id="collapse-address">
+                                            <div class=" address-card-body">
+
+
+                                                <div class="form-group group-half card-input ">
+                                                    @Html.EditorFor(model => model.customerPayment.BillName, new { htmlAttributes = new { @class = "form-control card-input-control card-input-half1", @id = "formGroupExampleInput", @placeholder = "First name(optional)", @Name = "BillFirstName" } })
+
+                                                </div>
+
+                                                <div class="form-group group-half card-input ">
+                                                    @Html.EditorFor(model => model.customerPayment.BillName, new { htmlAttributes = new { @class = "form-control card-input-control card-input-half2", @id = "formGroupExampleInput2", @placeholder = "Last name", @Name = "BillLastName" } })
+
+                                                </div>
+
+                                                <div class="form-group card-input">
+                                                    @Html.EditorFor(model => model.customerPayment.BillAddress, new { htmlAttributes = new { @class = "form-control card-input-control", @id = "formGroupExampleInput2", @placeholder = "Address", @Name = "BillAddress" } })
+                                                </div>
+
+                                                <div class="form-group card-input">
+                                                    @Html.EditorFor(model => model.customerPayment.BillCity, new { htmlAttributes = new { @class = "form-control card-input-control", @id = "formGroupExampleInput2", @placeholder = "City", @Name = "BillCity" } })
+                                                </div>
+
+                                                <div class="form-group card-input">
+                                                    @Html.EditorFor(model => model.customerPayment.BillPhone, new { htmlAttributes = new { @class = "form-control mb-1 card-input-control", @id = "formGroupExampleInput2", @placeholder = "Phone", @Name = "BillPhone" } })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-check">
+                            <div class="form-check">
+                                <input class="form-checkbox" type="checkbox" id="gridCheck">
+
+                                <label class="form-check-label" for="gridCheck">
+                                    Save this information for next time
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-btn">
+                                <a href="~/Product/ShoppingCart"><i class="fas fa-chevron-left"></i> Return to basket</a>
+                                <button type="submit" class="btn">Complete order</button>
+                            </div>
+                        </div>
+                        <div class="form-group footer">
+                            <div class="form-footer">
+                                <p>All rights reserved The Macallan</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="pay-main-right">
+                    <div class="main-right-content">
+                        <div class="order-summary">
+                            <div class="order-summary-sections">
+                                <div class="order-summary-section product-list">
+                                    <div class="order-summary-sections-content">
+                                        <table class="product-table">
+                                            <caption class="visually-hidden"></caption>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">
+                                                        <span class="visually-hidden">Product image</span>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <span class="visually-hidden">Description</span>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <span class="visually-hidden">Quantity</span>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <span class="visually-hidden">Price</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-order-summary-section="line-item">
+                                                @foreach (var item in productpayments)
+                                                {
+                                                    <tr class="product" data-product-id="" data-variant-id="" data-product-type="" data-customer-ready-visible="">
+                                                        <td class="product-image">
+                                                            <div class="product-thumbnail">
+                                                                <div class="product-thumbnail-wrapper">
+                                                                    <img class="product-thumbnail-image" src="~/Assets/images/img_Products/@Html.DisplayFor(modelItem => item.Picture)" alt="">
+                                                                </div>
+                                                                <span class="product-thumbnail-quantity" aria-hidden="true">@Html.DisplayFor(modelItem => item.Quantity)</span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="product-description">
+                                                            <span class="product-description-name">
+                                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                                            </span>
+                                                        </td>
+                                                        <td class="product-price">
+                                                            <span class="order-summary-emphasis">@Html.DisplayFor(modelItem => item.Price)</span>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="order-summary-section total-lines">
+                                    <table class="total-lines-table">
+                                        <caption class="visually-hidden">Cost summary</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">
+                                                    <span class="visually-hidden">Description</span>
+                                                </th>
+                                                <th scope="col">
+                                                    <span class="visually-hidden">Price</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="total-lines-tbody">
+                                            @foreach (var items in productpayments)
+                                            {
+                                                Total += items.Price * items.Quantity;
+                                            }
+
+                                            <tr class="total-line">
+                                                <th class="total-line-name" scope="row">Price</th>
+                                                <td class="total-line-price">
+                                                    <span class="order-summary-emphasis" data-checkout-subtotal-price-target="">$@Total</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="total-line total-line-shipping">
+                                                <th class="total-line-name" scope="row">Shipping</th>
+                                                <td class="total-line-price d-flex justify-content-end" style="text-align:right;">
+                                                    <p class="m-0" style="line-height:30px;color: #707070;">$</p> <input class="order-summary-small-text" data-checkout-total-shipping-target="0" name="Freight" value="100" readonly style="border:none;text-align:right;max-width:35px;"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot class="total-line-tfooter">
+                                            <tr class="total-line">
+                                                <th class="total-line-name payment-due-lable" scope="row">
+                                                    <span class="payment-due-lable-total" style="font-size: 1.2rem;">Total</span>
+                                                </th>
+                                                @{Total = Total + 100;}
+                                                <td class="total-line-price payment-due">
+                                                    <span class="payment-dueprice" data-checkout-payment-due-target="" style="font-size: 1.2rem; font-weight: 700;">$@Total</span>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+
+@*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>*@
+
+@section JQuery
+{
+    <script>
+        $(function () {
+            $("header nav")
+                .removeClass("navbar-dark")
+                .addClass("navbar-light");
+            //$("header a img").prop("src", "../Assets/images/img_Index/logo_dark.png");
+            $("header .nav-item > a")
+                .removeClass("text-white")
+                .addClass("text-dark");
+            $("#search-input")
+                .removeClass("whiteplaceholder")
+                .removeClass("text-white")
+                .addClass("blackplaceholder")
+                .addClass("text-dark");
+            $(window).scroll(function () {
+                var scrollVal = $(this).scrollTop();
+                if (scrollVal > 0) {
+                    $("header").addClass("fixed-header");
+                }
+                if (scrollVal == 0) {
+                    $("header").removeClass("fixed-header");
+                }
+            });
+        });
+
+        $("#collapse-address").hide();
+
+
+        $(document).ready(function () {
+            $("#checkout-different-billing-address-false").click(function () {
+                $("#collapse-address").hide();
+            });
+            $("#checkout-different-billing-address-true").click(function () {
+
+                $("#collapse-address").show();
+            });
+        });
+
+        $("#collapse-address").hide();
+        $("#collapseExample").hide();
+
+        $(document).ready(function () {
+            $("#collapse-false").click(function () {
+                $("#collapseExample").hide();
+                $("#collapse-true").removeAttr("name");
+                $("#collapse-false").attr("name", "PayWay");
+
+
+            });
+
+            $("#collapse-true").click(function () {
+
+                $("#collapseExample").show();
+                $("#collapse-false").removeAttr("name");
+                $("#collapse-true").attr("name", "PayWay");
+            });
+
+            $("#checkout-different-billing-address-false").click(function () {
+                $("#collapse-address").hide();
+                //$("#checkout-different-billing-address-true").removeAttr("name");
+                //$("#checkout-different-billing-address-false").attr("name", "SameBill");
+            });
+            $("#checkout-different-billing-address-true").click(function () {
+
+                $("#collapse-address").show();
+                //$("#checkout-different-billing-address-false").removeAttr("name");
+                //$("#checkout-different-billing-address-true").attr("name", "SameBill");
+            });
+
+        });
+
+    </script>
+}
+
+
+
+
+
+
+
+
